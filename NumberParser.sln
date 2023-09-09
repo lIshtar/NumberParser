@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberParser", "NumberParser\NumberParser.csproj", "{EF6C28A0-0C9C-4CA5-A18E-16649610239E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberParserTests", "NumberParserTests\NumberParserTests.csproj", "{FA035A3F-C2F1-4B1B-B202-90BD515E2AFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF6C28A0-0C9C-4CA5-A18E-16649610239E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF6C28A0-0C9C-4CA5-A18E-16649610239E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF6C28A0-0C9C-4CA5-A18E-16649610239E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF6C28A0-0C9C-4CA5-A18E-16649610239E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA035A3F-C2F1-4B1B-B202-90BD515E2AFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA035A3F-C2F1-4B1B-B202-90BD515E2AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA035A3F-C2F1-4B1B-B202-90BD515E2AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA035A3F-C2F1-4B1B-B202-90BD515E2AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FBFDD41-A1BC-4276-A492-660E755A6D4B}
+	EndGlobalSection
+EndGlobal
