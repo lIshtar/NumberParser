@@ -10,51 +10,6 @@ namespace NumberParserTests
     public class NumberRecognizerTests
     {
         [Theory]
-        [MemberData(nameof(SeveralCents))]
-        void GetNumberFromString_OnlyHundreds_Passed(string recognizedString, int actualNumber)
-        {
-            //Arrange
-            var numberRecognizer = new NumberRecognizer();
-
-            //Act
-            int recognizedNumber = numberRecognizer.GetNumberFromString(recognizedString);
-
-            //Assert
-            Assert.Equal(actualNumber, recognizedNumber);
-        }
-
-        public static IEnumerable<object[]> SeveralCents()
-        {
-            yield return new object[] { "cent", 100 };
-            yield return new object[] { "Cinq cent", 500 };
-            yield return new object[] { "Six cent", 600 };
-            yield return new object[] { "Neuf cent", 900 };
-            yield return new object[] { "Huit cent", 800 };
-        }
-
-        [Theory]
-        [MemberData(nameof(SeveralNumbersFrom101To159))]
-        void GetNumberFromString_NumberFrom101To159_Passed(string recognizedString, int actualNumber)
-        {
-            //Arrange
-            var numberRecognizer = new NumberRecognizer();
-
-            //Act
-            int recognizedNumber = numberRecognizer.GetNumberFromString(recognizedString);
-
-            //Assert
-            Assert.Equal(actualNumber, recognizedNumber);
-        }
-        public static IEnumerable<object[]> SeveralNumbersFrom101To159()
-        {
-            yield return new object[] { "cent Trente", 130 };
-            yield return new object[] { " cent Vingt", 120 };
-            yield return new object[] { " cent Douze", 112 };
-            yield return new object[] { " cent Sept", 107 };
-            yield return new object[] { " cent Quatre", 104 };
-        }
-
-        [Theory]
         [MemberData(nameof(NumbersFrom160To199))]
         void GetNumberFromString_NumberFrom160To199_Passed(string recognizedString, int actualNumber)
         {
@@ -62,7 +17,8 @@ namespace NumberParserTests
             var numberRecognizer = new NumberRecognizer();
 
             //Act
-            int recognizedNumber = numberRecognizer.GetNumberFromString(recognizedString);
+            int recognizedNumber;
+            int errorcode = numberRecognizer.GetNumberFromString(recognizedString, out recognizedNumber);
 
             //Assert
             Assert.Equal(actualNumber, recognizedNumber);
@@ -85,7 +41,7 @@ namespace NumberParserTests
             yield return new object[] { " cent Quatre-vingt-six ", 186 };
             yield return new object[] { " cent Quatre-vingt-cinq ", 185 };
             yield return new object[] { "cent Quatre-vingt-quatre", 184 };
-            yield return new object[] { " cent Quatre-vingt-trois", 183 };
+            yield return new object[] { " cent Quatre vingt trois", 183 };
             yield return new object[] { " cent Quatre-vingt-deux ", 182 };
             yield return new object[] { " cent Quatre-vingt-un  ", 181 };
             yield return new object[] { " cent Quatre-vingts", 180 };
@@ -109,29 +65,21 @@ namespace NumberParserTests
             yield return new object[] { " cent Soixante-deux", 162 };
             yield return new object[] { " cent Soixante et un ", 161 };
             yield return new object[] { " cent Soixante ", 160 };
-        }
-
-        [Theory]
-        [MemberData(nameof(IncorrectSeveralCents))]
-        void GetNumberFromString_IncorrectSeveralCentsString_Zero(string recognizedString)
-        {
-            //Arrange
-            var numberRecognizer = new NumberRecognizer();
-
-            //Act
-            int recognizedNumber = numberRecognizer.GetNumberFromString(recognizedString);
-            int zero = 0;
-
-            //Assert
-            Assert.Equal(zero, recognizedNumber);
-        }
-        public static IEnumerable<object[]> IncorrectSeveralCents()
-        {
-            yield return new object[] { "cents" };
-            yield return new object[] { "Cinq cent q" };
-            yield return new object[] { "Six cent dexa" };
-            yield return new object[] { "Neuf a cent" };
-            yield return new object[] { "a Huit cent" };
-        }
+			yield return new object[] { "cents" };
+			yield return new object[] { "Cinq cent q" };
+			yield return new object[] { "Six cent dexa" };
+			yield return new object[] { "Neuf a cent" };
+			yield return new object[] { "a Huit cent" };
+			yield return new object[] { "cent Trente", 130 };
+			yield return new object[] { " cent Vingt", 120 };
+			yield return new object[] { " cent Douze", 112 };
+			yield return new object[] { " cent Sept", 107 };
+			yield return new object[] { " cent Quatre", 104 };
+			yield return new object[] { "cent", 100 };
+			yield return new object[] { "Cinq cent", 500 };
+			yield return new object[] { "Six cent", 600 };
+			yield return new object[] { "Neuf cent", 900 };
+			yield return new object[] { "Huit cent", 800 };
+		}
     }
 }

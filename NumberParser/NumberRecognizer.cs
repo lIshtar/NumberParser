@@ -10,15 +10,17 @@ namespace NumberParser
 {
     public class NumberRecognizer
     {
-        public int GetNumberFromString(string numberText)
+        public int GetNumberFromString(string numberText, out int recognizedNumber)
         {
             numberText = numberText.Trim().ToLower();
             int number = 0;
             int hundreds = CountHundreds(ref numberText);
-            if (hundreds == 0)
-            {
-                return 0;
-            }
+            //if (hundreds == 0)
+            //{
+            //    apparently, i need to recognize 0 - 99 too
+            //   recognizedNumber = 0;
+            //    return 0;
+            //}
 
             number += hundreds;
             if (numberText.Length > 0)
@@ -26,7 +28,9 @@ namespace NumberParser
                 var tens = CountTens(ref numberText);
                 if (tens == 0)
                 {
-                    return 0;
+                    // i need to придумать error code for this 
+					recognizedNumber = 0;
+					return 0;
                 }
                 number += tens;
                 if (tens > 20)
@@ -44,7 +48,9 @@ namespace NumberParser
                         }
                         if (foundUnit == 0 )
                         {
-                            return 0;
+							// i need to придумать error code for this 
+							recognizedNumber = 0;
+							return 0;
                         }
                         else
                         {
@@ -58,9 +64,17 @@ namespace NumberParser
                 }
             }
             if (numberText == "")
-                return number;
+            {
+				// i need to придумать success code for this 
+				recognizedNumber = number;
+				return 0;
+			}
             else
-                return 0;
+            {
+				// i need to придумать error code for this 
+				recognizedNumber = 0;
+				return 0;
+			}
         }
 
         int CountHundreds(ref string numberText)
@@ -285,6 +299,36 @@ namespace NumberParser
             { "dix-huit", 18},
             { "dix-neuf", 19},
             { "dix", 10 }
+        };
+
+        List<string> correctWords = new()
+        {
+            "un",
+            "et",
+            "deux",
+            "trois",
+            "quatre",
+            "cinq",
+            "six",
+            "sept",
+            "huit",
+            "neuf",
+            "dix",
+            "onze",
+            "douze",
+            "treize",
+            "quatorze",
+            "quinze",
+            "seize",
+            "sept",
+            "huit",
+            "neuf",
+            "vingt",
+            "trente",
+            "quarante",
+            "cinquante",
+            "soixante",
+            "cent"
         };
     }
 }
